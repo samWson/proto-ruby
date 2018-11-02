@@ -1,0 +1,4 @@
+# Sample Proto Ruby code
+# Lines starting with # are comments
+
+answer = 1 + 2
