@@ -2,16 +2,16 @@ require_relative '../src/lexer'
 
 RSpec.describe Lexer do
   describe '#tokenize' do
-    context 'x = 1 + 2;' do
+    context 'x = 12 + 2;' do
       let(:lexer) { described_class.new }
-      let(:input) { 'x = 1 + 2;' }
+      let(:input) { 'x = 12 + 2;' }
       let(:tokens) do
         [
           [:identifier, 'x'],
           [:space, ' '],
           [:assignment, '='],
           [:space, ' '],
-          [:integer, '1'],
+          [:integer, '12'],
           [:space, ' '],
           [:identifier, '+'],
           [:space, ' '],
