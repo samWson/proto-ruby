@@ -1,4 +1,4 @@
-task default: %w[run]
+task default: %w[test]
 
 task :run do
   ruby 'src/main.rb'

@@ -22,9 +22,8 @@ class Lexer
     case chars.peek
     when '0'..'9'
       token = integer_token(chars)
-    when 'x'
-      token = [:identifier, 'x']
-      chars.next
+    when 'a'..'z'
+      token = identifier_token(chars)
     when ' '
       token = [:space, ' ']
       chars.next
@@ -47,10 +46,20 @@ class Lexer
   def integer_token(chars)
     digits = []
 
-    while ('0'..'9').include?(chars.peek) do
+    while ('0'..'9').include?(chars.peek) || chars.peek == '_' do
       digits.push(chars.next)
     end
 
     [:integer, digits.join]
+  end
+
+  def identifier_token(chars)
+    letters = []
+
+    while ('a'..'z').include?(chars.peek) || chars.peek == '_' do
+      letters.push(chars.next)
+    end
+
+    [:identifier, letters.join]
   end
 end
