@@ -6,7 +6,9 @@ import (
 )
 
 func TestLexer(t *testing.T) {
-	sourceCode := "x = 1 + 2;"
+	sourceCode := `x = 12 + 2;
+	,./|?;
+	ten = 10;`
 
 	tests := []struct {
 		expectedType    token.TokenType
@@ -14,9 +16,19 @@ func TestLexer(t *testing.T) {
 	}{
 		{token.IDENTIFIER, "x"},
 		{token.ASSIGNMENT, "="},
-		{token.INTEGER, "1"},
+		{token.INTEGER, "12"},
 		{token.IDENTIFIER, "+"},
 		{token.INTEGER, "2"},
+		{token.SEMICOLON, ";"},
+		{token.ILLEGAL, ","},
+		{token.ILLEGAL, "."},
+		{token.ILLEGAL, "/"},
+		{token.ILLEGAL, "|"},
+		{token.ILLEGAL, "?"},
+		{token.SEMICOLON, ";"},
+		{token.IDENTIFIER, "ten"},
+		{token.ASSIGNMENT, "="},
+		{token.INTEGER, "10"},
 		{token.SEMICOLON, ";"},
 	}
 
